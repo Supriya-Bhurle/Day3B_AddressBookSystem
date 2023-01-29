@@ -1,48 +1,36 @@
 package com.bridgelabz.addressbooksystem;
 
-public class Contact {private String name;
-    private  String lastName;
-    private String address;
-    private  String city;
+public class Contact {private String firstname;
+    private String lastname;
+    private String Address;
+    private String city;
     private String state;
-    private String phoneNo;
-    private String zipCode;
+    private long Pin;
+    private Long phoneNumber;
+    private String email;
 
-    public Contact() {
+    public String getFirstname() {
+        return firstname;
     }
 
-    public Contact(String name, String lastName, String address, String city, String state, String phoneNo, String zipCode) {
-        this.name = name;
-        this.lastName = lastName;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.phoneNo = phoneNo;
-        this.zipCode = zipCode;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getName() {
-        return name;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getAddress() {
-        return address;
+        return Address;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        Address = address;
     }
 
     public String getCity() {
@@ -61,32 +49,24 @@ public class Contact {private String name;
         this.state = state;
     }
 
-    public String getPhoneNo() {
-        return phoneNo;
+    public long getPin() {
+        return Pin;
     }
 
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
+    public void setPin(long pin) {
+        Pin = pin;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public long getPhoneNumber() {
+        return phoneNumber;
     }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
-
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", phoneNo='" + phoneNo + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                '}';
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
