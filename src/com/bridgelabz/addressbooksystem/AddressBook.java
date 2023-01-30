@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class AddressBook {
     static Scanner sc = new Scanner(System.in);
     ArrayList<Contact> contactArrayList = new ArrayList<Contact>();
+
     public void addContact() {
         System.out.println("Create new contact :");
         System.out.println("======================");
@@ -111,4 +112,18 @@ public class AddressBook {
             }
         }
         System.out.println(name + " not found");
-    }}
+    }
+    public void deleteContact() {
+        System.out.println("Enter name to delete:");
+        String name = sc.next();
+
+        for(Contact contact : contactArrayList) {
+            if(contact.getFirstName().equalsIgnoreCase(name)) {
+
+                contactArrayList.remove(contact);
+                System.out.println("contact is deleted");
+            }
+        }
+        System.out.println("contact not available");
+    }
+}
