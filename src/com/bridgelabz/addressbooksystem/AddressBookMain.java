@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class AddressBookMain {
     public static void main(String[] args) {
-        System.out.println("Welcome To Address-book");
+        System.out.println("Welcome to Address Book Program");
         AddressBook addressBook = new AddressBook();
         Contact contact = new Contact();
-        System.out.println("0.Exit \n1.Add Contact \n2.Display Contact \n3.Edit \n4.delete ");
+        System.out.println("0.Exit \n1.Add Contact \n2.Display Contact \n3.Edit contact\n4.delete contact");
         System.out.println("Enter the Operation Number : ");
         Scanner sc = new Scanner(System.in);
         int operationNumber = sc.nextInt();
