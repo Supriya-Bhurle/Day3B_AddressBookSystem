@@ -10,6 +10,22 @@ public class Contact{
     private String state;
     private long  zip;
 
+    public Contact(){
+
+    }
+    public Contact(String firstName, String lastName, String address, long phoneNumber, String emailID, String city,
+                   String state, long zip){
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.emailID = emailID;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -55,7 +71,7 @@ public class Contact{
     public long getZip() {
         return zip;
     }
-    public void setZip(long zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
     @Override
