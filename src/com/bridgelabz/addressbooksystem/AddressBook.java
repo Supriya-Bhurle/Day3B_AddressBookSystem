@@ -1,9 +1,6 @@
 package com.bridgelabz.addressbooksystem;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddressBook {
     Contact contact = new Contact();
@@ -13,42 +10,110 @@ public class AddressBook {
     static Scanner sc = new Scanner(System.in);
     static HashMap<String, ArrayList<Contact>> hashmap = new HashMap<>();
 
-    public void addContact() {
-        System.out.println("Create new contact :");
-        System.out.println("======================");
-        System.out.println("Enter first name:");
-        Scanner sc = new Scanner(System.in);
-        String firstName = sc.next();
-        System.out.println("Enter last name");
-        String lastName = sc.next();
-        System.out.println("Enter address");
-        String address = sc.next();
-        System.out.println("Enter phone number");
-        long  phoneNumber = sc.nextLong();
-        System.out.println("Enter email ID");
-        String emailID = sc.next();
-        System.out.println("Enter city:");
-        String city = sc.next();
-        System.out.println("Enter state :");
-        String state = sc.next();
-        System.out.println("Enter zip code");
-        String zip = sc.nextLong();
-
-        Contact contact = new Contact();
-
-        contact.setFirstName(firstName);
-        contact.setLastName(lastName);
-        contact.setAddress(address);
-        contact.setPhoneNumber(phoneNumber);
-        contact.setEmailID(emailID);
-        contact.setCity(city);
-        contact.setState(state);
-        contact.setZip(zip);
-        displayContact(contact );
-        sc.close();
+    // method For Adding Multiple Address Book
+    public static void multipleAddressBook(AddressBook addressBook) {
+        System.out.println("Select the Choice:\n1. Add Address Book \n2. Search City or State.");
+        int ch = sc.nextInt();
+        switch (ch) {
+            case 1:
+                int selection;
+                do {
+                    System.out.println("Enter Name For Address Book");
+                    String AddressBookName = sc.next();
+//                contactsDetails.add(AddressBookName);
+                    if (hashmap.containsKey(AddressBookName)) {
+                        System.out.println("The AddressBook already contains");
+                        break;
+                    } else {
+                        ArrayList<Contact> contactDetails1 = new ArrayList<>();
+                        addressBook.menuChoose(addressBook, contactDetails1);
+                        hashmap.put(AddressBookName,contactDetails1);
+                    }
+                    System.out.println("AddressBook Added" + hashmap + " ");
+                    System.out.println("1. Add New Address Book \n2. Search Contact by City or State \n3. Exit");
+                    selection = sc.nextInt();
+                } while (selection == 1);
+            case 2:
+                System.out.println("Enter City or State name to search ");
+                String name = sc.next();
+                SearchInMultipleBook(name);
+                break;
+            default:
+        }
     }
-    public void displayContact(Contact contact) {
-        System.out.println(contact);
+    //Search person in a Multiple Address book.
+    private static List<Contact> SearchInMultipleBook(String name) {
+        for (Map.Entry<String, ArrayList<Contact>> entry : hashmap.entrySet()) {
+            for (Contact contacts : entry.getValue()) {
+                if (contacts.getCity().equals(name) || contacts.getState().equals(name)) {
+                    System.out.println("\nAddress Book Name :" + entry.getKey());
+                    System.out.println("First Name :" + contacts.getFirstName());
+                    System.out.println("Last Name :" + contacts.getLastName());
+                    System.out.println("Email-ID :" + contacts.getEmailID());
+                    System.out.println("Address :" + contacts.getAddress());
+                    System.out.println("City Name :" + contacts.getCity());
+                    System.out.println("Contact Number :" + contacts.getPhoneNumber());
+                }
+            }
+        }
+
+        System.out.printf("No record found:");
+        return null;
+    }
+
+    public static ArrayList<Contact> addDetails(ArrayList<Contact> contactsDetails) {
+        Contact info = new Contact();
+        if (contactsDetails.size() == 0) {
+            System.out.println("Enter the First Name");
+            info.setFirstName(sc.next());
+            System.out.println("Enter the Last Name");
+            info.setLastName(sc.next());
+            System.out.println("Enter the Address");
+            info.setAddress(sc.next());
+            System.out.println("Enter the city");
+            info.setCity(sc.next());
+            System.out.println("Enter the State");
+            info.setState(sc.next());
+            System.out.println("Enter the your zip Code");
+            info.setZip(sc.next());
+            System.out.println("Enter the Contact Number");
+            info.setPhoneNumber(Long.parseLong(sc.next()));
+            System.out.println("Enter the Email Id");
+            info.setEmailID(sc.next());
+            contactsDetails.add(info);
+            System.out.println("Contact details added");
+        } else {
+            System.out.println("Enter first name");
+            String firstName = sc.next();
+            /*
+             * For searching the duplicate names in arraylist
+             */
+            for (Contact contacts : contactsDetails) {
+                // checking the duplicate name.
+                if (contacts.getFirstName().equals(firstName)) {
+                    System.out.println("The Name is already present.");
+                    AddressBook.addDetails(contactsDetails);
+                }
+            }
+            System.out.println("Re-enter first name");
+            info.setFirstName(sc.next());
+            System.out.println("Enter Last Name");
+            info.setLastName(sc.next());
+            System.out.println("Enter contact Number:");
+            info.setPhoneNumber(Long.parseLong(sc.next()));
+            System.out.println("Enter Email: ");
+            info.setEmailID(sc.next());
+            System.out.println("Enter Address: ");
+            info.setAddress(sc.next());
+            System.out.println("Enter City Name: ");
+            info.setCity(sc.next());
+            System.out.println("Enter State: ");
+            info.setState(sc.next());
+            System.out.println("Enter Zip Code:");
+            info.setZip(sc.next());
+            contactsDetails.add(info);
+        }
+        return contactsDetails;
     }
 
     public void displayContacts(ArrayList<Contact> contactDetails) {
@@ -85,7 +150,7 @@ public class AddressBook {
                         // displayContacts();
                         break;
                     case 2:
-                        System.out.println("Enter the Last NAme You want to update");
+                        System.out.println("Enter the Last Name You want to update");
                         String updatedLastName = sc.next();
                         contact.setLastName(updatedLastName);
                         // displayContacts();
@@ -117,7 +182,7 @@ public class AddressBook {
                     case 7:
                         System.out.println("Enter the Contact numberYou want to update");
                         String updatedContact = sc.next();
-                        contact.setPhoneNumber(updatedContact);
+                        contact.setPhoneNumber(Long.parseLong(updatedContact));
                         // displayContacts();
                         break;
                     case 8:
@@ -168,7 +233,7 @@ public class AddressBook {
                 /* Add contact details in address book */
                 case 1:
                     System.out.println("Add Details");
-                    addDetails(contactDetails);
+                    addressBook.addDetails(contactDetails);
                     break;
                 case 2:
                     /* Edit contact details in address book */

@@ -72,7 +72,7 @@ public class Contact{
         return zip;
     }
     public void setZip(String zip) {
-        this.zip = zip;
+        this.zip = Long.parseLong(zip);
     }
     @Override
     public String toString() {
