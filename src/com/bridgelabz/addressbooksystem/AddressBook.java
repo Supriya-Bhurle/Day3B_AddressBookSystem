@@ -1,11 +1,13 @@
 package com.bridgelabz.addressbooksystem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class AddressBook {
     static Scanner sc = new Scanner(System.in);
     ArrayList<Contact> contactArrayList = new ArrayList<Contact>();
+    HashMap <String,AddressBook> hashMap = new HashMap<String ,AddressBook>();
 
     public void addContact() {
         System.out.println("Create new contact :");
